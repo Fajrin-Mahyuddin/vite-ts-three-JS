@@ -1,7 +1,7 @@
 import { AmbientLight, BoxGeometry, DirectionalLight, PerspectiveCamera, Mesh, MeshPhongMaterial, Scene, WebGLRenderer } from 'three'
-import MyCamera from './src/cameras/Camera'
-import Light from './src/lights/Lights'
-import './style.css'
+import MyCamera from './cameras/Camera'
+import Light from './lights/Lights'
+import './assets/style.css'
 
 interface ILight {
   ambientLight: AmbientLight
@@ -9,14 +9,16 @@ interface ILight {
 }
 
 class Main {
+
   scene: Scene
   canvas: HTMLCanvasElement
-  cameraClass: PerspectiveCamera
+  cameraClass: MyCamera
   renderer: WebGLRenderer
   light: ILight
   boxGeometry: BoxGeometry
   material: MeshPhongMaterial
   box: Mesh
+
   constructor() {
     this.scene = new Scene()
     // this._scene.background = new Color("red")
@@ -24,15 +26,15 @@ class Main {
     this.cameraClass = new MyCamera({ canvas: this.canvas })
     this.renderer = new WebGLRenderer({ canvas: this.canvas })
     this.light = new Light("white")
+    this.boxGeometry = new BoxGeometry(10, 10, 10)
+    this.material = new MeshPhongMaterial({ color: "red" })
+    this.box = new Mesh(this.boxGeometry, this.material)
     this._Init()
     this._Update()
   }
 
   _Init() {
     console.log("your app running...");
-    this.boxGeometry = new BoxGeometry(10, 10, 10)
-    this.material = new MeshPhongMaterial({ color: "red" })
-    this.box = new Mesh(this.boxGeometry, this.material)
 
     this.scene.add(this.box)
     this.scene.add(this.light.ambientLight, this.light.directionalLight)
@@ -44,7 +46,7 @@ class Main {
   _Update() {
     console.log("animate running...");
     requestAnimationFrame((t) => {
-      this.cameraClass.controls.update(t)
+      this.cameraClass.controls.update()
       this.renderer.render(this.scene, this.cameraClass.camera)
       this._Update()
     })

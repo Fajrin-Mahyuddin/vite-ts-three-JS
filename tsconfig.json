@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/cameras/*": [
+				"cameras/*"
+			]
+		},
+		"lib": [
+			"es5",
+			"es6",
+			"dom"
+		]
+	}
+}

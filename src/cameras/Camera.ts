@@ -5,7 +5,7 @@ export default class MyCamera {
 	_canvas: HTMLCanvasElement
 	camera: PerspectiveCamera
 	controls: OrbitControls
-	constructor(params) {
+	constructor(params: any) {
 		// this._renderer = params._renderer
 		this._canvas = params.canvas
 		this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight)

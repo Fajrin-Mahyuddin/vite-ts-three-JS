@@ -1,7 +1,5 @@
 import { AmbientLight, DirectionalLight } from "three";
 
-
-
 export default class Light {
 	ambientLight: AmbientLight
 	directionalLight: DirectionalLight
